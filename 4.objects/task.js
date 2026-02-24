@@ -14,7 +14,11 @@ Student.prototype.setSubject = function (subjectName) {
 }
 
 Student.prototype.addMarks = function (...marks) {
-  
+  if(!this.marks) {
+    console.log("Ошибка: студент отчислен");
+    return false;
+  }
+  this.marks.push(...marks);
 }
 
 Student.prototype.getAverage = function () {
