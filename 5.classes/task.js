@@ -34,30 +34,30 @@ class Magazine extends PrintEditionItem {
 }
 
 class Book extends PrintEditionItem {
-    constructor(name, releaseDate, pagesCount, state, type, author) {
-        super(name, releaseDate, pagesCount, state, type, author);
+    constructor(author, name, releaseDate, pagesCount, state, type) {
+        super(name, releaseDate, pagesCount, state, type);
         this.author = author;
         this.type = "book";
     }
 }
 
 class NovelBook extends Book {
-    constructor(name, releaseDate, pagesCount, state, type, author) {
-        super(name, releaseDate, pagesCount, state, type, author);
+    constructor(author, name, releaseDate, pagesCount, state, type) {
+        super(author, name, releaseDate, pagesCount, state, type);
         this.type = "novel";
     }
 }
 
 class FantasticBook extends Book {
-    constructor(name, releaseDate, pagesCount, state, type, author) {
-        super(name, releaseDate, pagesCount, state, type, author);
+    constructor(author, name, releaseDate, pagesCount, state, type) {
+        super(author, name, releaseDate, pagesCount, state, type);
         this.type = "fantastic";
     }
 }
 
 class DetectiveBook extends Book {
-    constructor(name, releaseDate, pagesCount, state, type, author) {
-        super(name, releaseDate, pagesCount, state, type, author);
+    constructor(author, name, releaseDate, pagesCount, state, type) {
+        super(author, name, releaseDate, pagesCount, state, type);
         this.type = "detective";
     }
 }
@@ -75,19 +75,19 @@ class Library {
     }
 
     findBookBy(type, value) {
-        if (!this.books) {
-            return null;
-        } else {
-            return this.books;
-        }
+        return this.books.find(book => book[type] === value) || null;
     }
 
-    //giveBookByName(bookName) {
-      //  if (bookName) {
-        //    this.books.splice(1);
-          //  return 
-       // }
-    //}
+    giveBookByName(bookName) {
+        let book = this.books.find(book => book.name === bookName);
+        
+        if (!book) {
+            return null;
+        }
+
+        this.books = this.books.filter(book => book.name != book.name);
+        return book;
+    }
 }
 
 class Student {
@@ -96,7 +96,7 @@ class Student {
         this.marks = {};
     }
 
-    addMark(subject, mark) {
+    addMark(mark, subject) {
         if (mark < 2 || mark > 5) {
             return false;
         }
@@ -105,7 +105,7 @@ class Student {
             this.marks[subject] = [];
         }
 
-        this.marks[subject].push.mark;
+        this.marks[subject].push(mark);
     }
 
     getAverageBySubject(subject) {
@@ -117,6 +117,7 @@ class Student {
     }
 
     getAverage() {
-        Object.keys(subject)
+     //   Object.keys(this.marks).map(subject => 
+        
     }
 }
