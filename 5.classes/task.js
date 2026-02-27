@@ -69,7 +69,7 @@ class Library {
     }
 
     addBook(book) {
-        if (state > 30) {
+        if (book.state > 30) {
             this.books.push(book);
         }
     }
@@ -85,7 +85,7 @@ class Library {
             return null;
         }
 
-        this.books = this.books.filter(book => book.name != book.name);
+        this.books = this.books.filter(book => book.name != bookName);
         return book;
     }
 }
@@ -109,15 +109,20 @@ class Student {
     }
 
     getAverageBySubject(subject) {
-        if (!this.marks[subject]) {
+        const marks = this.marks[subject];
+        if (!marks) {
             return 0;
         }
 
-        return marks.reduce((sum, mark) => sum + mark, 0) / marks.length;
+        return marks.reduce((acc, mark) => acc + mark, 0) / marks.length;
     }
 
     getAverage() {
-     //   Object.keys(this.marks).map(subject => 
-        
+        let subjects = Object.keys(this.marks);
+        if(subjects.length === 0) {
+            return 0;
+        }
+
+        return subjects.reduce((acc, subject) => acc + this.getAverageBySubject(subject), 0) / subjects.length; 
     }
 }
